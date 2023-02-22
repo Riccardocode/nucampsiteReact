@@ -1,5 +1,7 @@
 import { Col, Row, Container } from "reactstrap";
 import SubHeader from '../components/SubHeader';
+import ContactForm from "../components/ContactForm";
+
 const ContactPage =() => {
     return (
         <Container>
@@ -40,7 +42,7 @@ const ContactPage =() => {
 
                 </Col>
                 <Col md='10'>
-                    TDB:ContactForm
+                    <ContactForm />
                 </Col>
             </Row>
         </Container>
