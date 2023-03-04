@@ -17,7 +17,7 @@ import { validateUserLoginForm } from '../../utils/validateUserLoginForm';
 const UserLoginForm = () =>{
     const [loginModalOpen,setLoginModalOpen] = useState(false);
     // passo con argomento oppure solo indirizzo funzione?
-    const currentUser = useSelector(selectCurrentUser());
+    const currentUser = useSelector(selectCurrentUser);
     
     const dispatch = useDispatch();
 
@@ -60,7 +60,7 @@ const UserLoginForm = () =>{
                     Login
                 </ModalHeader>
                 <ModalBody>
-                    <Formik initialValues={{username:"",password:""}} onSubmit={handleLogin()}>
+                    <Formik validate = {validateUserLoginForm} initialValues={{username:"",password:""}} onSubmit={handleLogin}>
                         <Form>
                             <FormGroup>
                                 <Label htmlFor='username'>
