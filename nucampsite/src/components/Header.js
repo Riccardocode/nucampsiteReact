@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import UserLoginForm from '../features/user/UserLoginForm';
 import {Navbar, 
     NavbarBrand,
     Collapse,
@@ -21,6 +22,7 @@ const Header = ()=>{
         <NavbarToggler onClick = {()=> setMenuOpen(!menuOpen)}/>
         <Collapse isOpen = {menuOpen} navbar>
             <Nav className = 'ms-auto' navbar>
+                   
                 <NavItem>
                     <NavLink className = 'nav-link' to='/'>
                         <i className = 'fa fa-home fa-lg' /> Home
@@ -42,10 +44,14 @@ const Header = ()=>{
                     </NavLink>
                 </NavItem>
                 
-
+                
             </Nav>
+            <UserLoginForm> </UserLoginForm> 
         </Collapse>
+        
     </Navbar>
+    
+
   );
 }
 
