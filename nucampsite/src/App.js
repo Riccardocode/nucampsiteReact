@@ -1,17 +1,25 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {Routes ,Route } from 'react-router-dom';
 import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 
 import CampsitesDirectoryPage from './pages/CampsitesDirectoryPage';
-import { CAMPSITES } from './app/shared/CAMPSITES';
+//import { CAMPSITES } from './app/shared/CAMPSITES';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import CampsiteDetailPage from './pages/CampsiteDetailPage'; 
-
+import CampsiteDetailPage from './pages/CampsiteDetailPage';
+import { fetchCampsites } from './features/campsites/campsitesSlice';
 import './App.css';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(fetchCampsites());
+  },[dispatch]);
   return (
     <div className="App">
       <Header />
