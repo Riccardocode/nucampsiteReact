@@ -4,6 +4,7 @@ import {Routes ,Route } from 'react-router-dom';
 import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
+import { fetchPartners } from './features/partners/partnersSlice';
 
 import CampsitesDirectoryPage from './pages/CampsitesDirectoryPage';
 //import { CAMPSITES } from './app/shared/CAMPSITES';
@@ -19,6 +20,7 @@ function App() {
 
   useEffect(()=>{
     dispatch(fetchCampsites());
+    dispatch(fetchPartners());
   },[dispatch]);
   return (
     <div className="App">
