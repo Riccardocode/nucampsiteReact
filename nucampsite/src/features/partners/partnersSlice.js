@@ -3,9 +3,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { baseUrl } from '../../app/shared/baseUrl';
 import { mapImageURL } from '../../utils/mapImageURL';
 
-//import {PARTNERS} from '../../app/shared/PARTNERS';
-
-//New code
 export const fetchPartners = createAsyncThunk(
     'partners/fetchPartners',
     async () => {
@@ -17,7 +14,7 @@ export const fetchPartners = createAsyncThunk(
         return data;
     }
 );
-//new Code
+
 
 const initialState = {
     partnersArray: [],
