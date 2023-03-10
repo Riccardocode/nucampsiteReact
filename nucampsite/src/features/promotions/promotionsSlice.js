@@ -27,7 +27,7 @@ const initialState = {
 const promotionsSlice = createSlice({
     name: 'promotions',
     initialState,
-    reducers: {},
+    reducers:{},
     extraReducers: {
         [fetchPromotions.pending]: (state) => {
             state.isLoading = true;
@@ -35,7 +35,7 @@ const promotionsSlice = createSlice({
         [fetchPromotions.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.errMsg = '';
-            state.promotionsArray = mapImageURL(action.payload);
+            state.promotionArray = mapImageURL(action.payload);
         },
         [fetchPromotions.rejected]: (state, action) => {
             state.isLoading = false;

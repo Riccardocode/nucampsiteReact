@@ -8,39 +8,39 @@ import { mapImageURL } from '../../utils/mapImageURL';
 //New code
 export const fetchPartners = createAsyncThunk(
     'partners/fetchPartners',
-    async () =>{
+    async () => {
         const response = await fetch(baseUrl + 'partners');
-        if(!response.ok){
-            return Promise.reject('Unable to fetch, status: ' + response.status);  
+        if (!response.ok) {
+            return Promise.reject('Unable to fetch, status: ' + response.status);
         }
         const data = await response.json();
         return data;
     }
-)
+);
 //new Code
 
-const initialState ={
-    partnersArray:[],
+const initialState = {
+    partnersArray: [],
     isLoading: true,
     errMsg: ''
 };
 
 const partnersSlice = createSlice({
-    name:'partners',
+    name: 'partners',
     initialState,
-    reducers:{},
-    extraReducers:{
-        [fetchPartners.pending]:(state) =>{
+    reducers: {},
+    extraReducers: {
+        [fetchPartners.pending]: (state) => {
             state.isLoading = true;
         },
-        [fetchPartners.fulfilled]:(state,action) =>{
+        [fetchPartners.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.errMsg = '';
             state.partnersArray = mapImageURL(action.payload);
         },
-        [fetchPartners.rejected]:(state,action) => {
-            state.isLoading =false;
-            state.errMsg = action.error ? action.error.message: 'Fetch failed';
+        [fetchPartners.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.errMsg = action.error ? action.error.message : 'Fetch failed';
         }
     }
 });

@@ -1,8 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {COMMENTS} from '../../app/shared/COMMENTS';
+//import {COMMENTS} from '../../app/shared/COMMENTS';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { baseUrl } from '../../app/shared/baseUrl';
+import { mapImageURL } from '../../utils/mapImageURL';
+
+export const fetchComments = createAsyncThunk(
+    'comments/fetchComments',
+    async () => {
+        const response = await fetch(baseUrl + 'commeents');
+        if(!response.ok){
+            Promise.reject('Unable to fetch, status: ' + response.status);
+        }
+        const answer = await response.json();
+        return answer;
+        
+    }
+);
 
 const initialState ={
-    commentsArray:COMMENTS
+    commentsArray:[],
+    isLoading:true,
+    errMsg:''
 };
 
 const commentsSlice=createSlice({
@@ -17,6 +35,21 @@ const commentsSlice=createSlice({
                 ...action.payload
             };
             state.commentsArray.push(newComment);
+        }
+    },
+    extraReducers:{
+        [fetchComments.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [fetchComments.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.errMsg = '';
+            state.commentsArray = mapImageURL(action.payload);
+            
+        },
+        [fetchComments.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.errMsg = action.error ? action.error.message : 'Fetch failed';
         }
     }
 });

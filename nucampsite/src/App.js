@@ -13,16 +13,18 @@ import Footer from './components/Footer';
 import CampsiteDetailPage from './pages/CampsiteDetailPage';
 import { fetchCampsites } from './features/campsites/campsitesSlice';
 import './App.css';
+import {fetchComments} from './features/comments/commentsSlice'
 
 function App() {
 
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchCampsites());
     dispatch(fetchPartners());
     dispatch(fetchPromotions());
-  },[dispatch]);
+    dispatch(fetchComments());
+}, [dispatch]);
 
   return (
     <div className="App">
