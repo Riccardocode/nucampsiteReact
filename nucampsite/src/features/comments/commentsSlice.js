@@ -2,14 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 //import {COMMENTS} from '../../app/shared/COMMENTS';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { baseUrl } from '../../app/shared/baseUrl';
-import { mapImageURL } from '../../utils/mapImageURL';
+
 
 export const fetchComments = createAsyncThunk(
     'comments/fetchComments',
     async () => {
-        const response = await fetch(baseUrl + 'comments');
+        const response = await fetch(baseUrl + 'commeents');
         if(!response.ok){
-            Promise.reject('Unable to fetch, status: ' + response.status);
+            return Promise.reject('Unable to fetch, status: ' + response.status);
         }
         const answer = await response.json();
         return answer;
@@ -57,7 +57,7 @@ const commentsSlice=createSlice({
         [fetchComments.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.errMsg = '';
-            state.commentsArray = mapImageURL(action.payload);
+            state.commentsArray = action.payload;
             
         },
         [fetchComments.rejected]: (state, action) => {
